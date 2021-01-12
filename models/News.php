@@ -15,7 +15,16 @@ class News{
     
         
     }
-
+    function Allnews(){
+        global $pdo;
+        $pdo_statement=$pdo->prepare("SELECT * FROM news ORDER BY `date` DESC");
+        $pdo_statement->execute();
+        
+         
+         $row=$pdo_statement->fetchAll(PDO::FETCH_OBJ);
+         return $row;
+     
+     }
 function getAllnewsInCategory_($type){
    global $pdo;
     $pdo_statement=$pdo->prepare("select * from news where type=?");
